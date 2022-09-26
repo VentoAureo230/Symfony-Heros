@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Character;
+use App\Entity\ClassSkills;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Character>
+ * @extends ServiceEntityRepository<ClassSkills>
  *
- * @method Character|null find($id, $lockMode = null, $lockVersion = null)
- * @method Character|null findOneBy(array $criteria, array $orderBy = null)
- * @method Character[]    findAll()
- * @method Character[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method ClassSkills|null find($id, $lockMode = null, $lockVersion = null)
+ * @method ClassSkills|null findOneBy(array $criteria, array $orderBy = null)
+ * @method ClassSkills[]    findAll()
+ * @method ClassSkills[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class CharacterRepository extends ServiceEntityRepository
+class ClassSkillsRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Character::class);
+        parent::__construct($registry, ClassSkills::class);
     }
 
-    public function save(Character $entity, bool $flush = false): void
+    public function save(ClassSkills $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class CharacterRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Character $entity, bool $flush = false): void
+    public function remove(ClassSkills $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class CharacterRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return Character[] Returns an array of Character objects
+//     * @return ClassSkills[] Returns an array of ClassSkills objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class CharacterRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Character
+//    public function findOneBySomeField($value): ?ClassSkills
 //    {
 //        return $this->createQueryBuilder('c')
 //            ->andWhere('c.exampleField = :val')
