@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\HerosRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Proxies\__CG__\App\Entity\ClassHeros;
 
 #[ORM\Entity(repositoryClass: HerosRepository::class)]
 class Heros
@@ -117,6 +118,11 @@ class Heros
     {
         return $this->classHeros;
     }
+
+    //public function __toString(): ?ClassHeros
+    //{
+    //    return $this->classHeros;
+    //}
 
     public function setClassHeros(?ClassHeros $classHeros): self
     {

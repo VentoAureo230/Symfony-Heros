@@ -3,42 +3,61 @@
 namespace App\Controller;
 
 use App\Entity\Heros;
-use Doctrine\Persistence\ObjectManager;
+use App\Repository\HerosRepository;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HeroController extends AbstractController
 {
-    #[Route('/home', name: 'home')]
+    #[Route('/', name: 'home')]
     public function index(): Response
     {
+        return $this->render('base.html.twig',);
+    }
+
+    #[Route('/character', name: 'show_character')]
+    public function show(HerosRepository $repository): Response
+    {
+        $allHeroes = $repository->findAll();
         return $this->render('hero/index.html.twig', [
-            'controller_name' => 'HeroController',
+            'heroes' => $allHeroes,
         ]);
     }
 
-    #[Route('/home/create-hero', name:'create_hero')]
-    #[Route('/home/{id}/edit', name:'edit_hero')]
-    public function form(Heros $hero = null, Request $request, ObjectManager $manager) {
+    #[Route('/character/add', name:'add_hero')]
+    #[Route('/character/edit/{id}', name:'edit_hero')]
+    #[Route('/character/delete/{id}', name:'delete_hero')]
+    public function form(Heros $hero = null, Request $request, ManagerRegistry $manager) {
         
         if(!$hero){
             $hero = new Heros();
         }
 
         $form = $this->createFormBuilder($hero)
-                     ->add('name')
-                     ->add('description')
-                     ->add('level')
-                     ->add('experience')
-                     ->add('health')
-                     ->getForm();
+            ->add('name')
+            ->add('birthdate', DateTimeType::class, [
+                'date_label' => 'Starts on'
+            ])
+            ->add('description')
+            ->add('level')
+            ->add('experience')
+            ->add('healtpoint')
+            ->add('save', SubmitType::class, [
+                'label' => 'Enregistrer'
+            ])
+            ->getForm();
 
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
-            $manager->persist($hero);
-            $manager->flush();
+            $em = $manager->getManager();
+            $em->persist($hero);
+            $em->flush();
 
             return $this->redirectToRoute('hero_list', ['id' => $hero->getId()]);
         }
@@ -48,4 +67,6 @@ class HeroController extends AbstractController
         'editMode' => $hero->getId() !== null
     ]);
     }
+
+    
 }

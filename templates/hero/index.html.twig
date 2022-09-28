@@ -9,12 +9,18 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h1>Index des héros</h1>
+    {% for hero in heroes %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/wamp64/projet-cours/Symfony-Heros/src/Controller/HeroController.php'|file_link(0) }}">src/Controller/HeroController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/wamp64/projet-cours/Symfony-Heros/templates/hero/index.html.twig'|file_link(0) }}">templates/hero/index.html.twig</a></code></li>
-    </ul>
+        <h2 class="name">{{ hero.name }}</h2>
+        <div class="">Description du héros : {{ hero.description }}</div>
+        <div class="">Classe du héros : hero.classHeros </div>
+        <div class="">Date d'anniversaire : {{ hero.birthDate | date('d/m/y') }}</div>
+        <div class="">Niveau : {{ hero.level }}</div>
+        <div class="">Expérience : {{ hero.experience }}</div>
+        <div class="">Point de vie : {{ hero.healtPoint }}</div>
+
+    {% endfor %}
+
 </div>
 {% endblock %}
