@@ -51,6 +51,14 @@ class ClassHeros
         return $this;
     }
 
+    public function __toString()
+    {
+        if(is_null($this->class_name)) {
+            return 'NULL';
+        }
+        return $this->class_name;
+    }
+
     public function getDescription(): ?string
     {
         return $this->description;

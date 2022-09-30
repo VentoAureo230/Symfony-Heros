@@ -22,7 +22,6 @@ final class Version20220926173637 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE TABLE class_heros (id INT AUTO_INCREMENT NOT NULL, class_name VARCHAR(255) NOT NULL, description LONGTEXT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE heros (id INT AUTO_INCREMENT NOT NULL, class_heros_id INT NOT NULL, name VARCHAR(50) NOT NULL, birth_date DATE NOT NULL, level INT NOT NULL, experience INT NOT NULL, description LONGTEXT NOT NULL, healt_point INT NOT NULL, INDEX IDX_1F842770B66E9373 (class_heros_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE messenger_messages (id BIGINT AUTO_INCREMENT NOT NULL, body LONGTEXT NOT NULL, headers LONGTEXT NOT NULL, queue_name VARCHAR(190) NOT NULL, created_at DATETIME NOT NULL, available_at DATETIME NOT NULL, delivered_at DATETIME DEFAULT NULL, INDEX IDX_75EA56E0FB7336F0 (queue_name), INDEX IDX_75EA56E0E3BD61CE (available_at), INDEX IDX_75EA56E016BA31DB (delivered_at), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE heros ADD CONSTRAINT FK_1F842770B66E9373 FOREIGN KEY (class_heros_id) REFERENCES class_heros (id)');
     }
 
