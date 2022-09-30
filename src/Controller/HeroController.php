@@ -7,7 +7,7 @@ use App\Entity\Heros;
 use App\Repository\HerosRepository;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+// use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
@@ -45,9 +45,7 @@ class HeroController extends AbstractController
             ->add('birthdate', DateTimeType::class, [
                 'date_label' => 'Starts on'
             ])
-            ->add('classHeros', EntityType::class, [
-                'class' => ClassHeros::class
-            ])
+            ->add('classHeros')
             ->add('description')
             ->add('level')
             ->add('experience')
