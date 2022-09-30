@@ -34,7 +34,7 @@ class Heros
     private ?int $healt_point = null;
 
     #[ORM\ManyToOne(inversedBy: 'heros')]
-    #[ORM\JoinColumn(nullable: false)]
+    // #[ORM\JoinColumn(nullable: false)]
     private ?ClassHeros $classHeros = null;
 
     public function getId(): ?int
@@ -118,11 +118,6 @@ class Heros
     {
         return $this->classHeros;
     }
-
-    //public function __toString(): ?ClassHeros
-    //{
-    //    return $this->classHeros;
-    //}
 
     public function setClassHeros(?ClassHeros $classHeros): self
     {

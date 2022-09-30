@@ -2,12 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\ClassHeros;
 use App\Entity\Heros;
 use App\Repository\HerosRepository;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,9 +31,9 @@ class HeroController extends AbstractController
         ]);
     }
 
-    #[Route('/character/add', name:'add_hero')]
-    #[Route('/character/edit/{id}', name:'edit_hero')]
-    #[Route('/character/delete/{id}', name:'delete_hero')]
+    #[Route('/character/add', name:'add_character')]
+    #[Route('/character/edit/{id}', name:'edit_character')]
+    #[Route('/character/delete/{id}', name:'delete_character')]
     public function form(Heros $hero = null, Request $request, ManagerRegistry $manager) {
         
         if(!$hero){
@@ -43,6 +44,9 @@ class HeroController extends AbstractController
             ->add('name')
             ->add('birthdate', DateTimeType::class, [
                 'date_label' => 'Starts on'
+            ])
+            ->add('classHeros', EntityType::class, [
+                'class' => ClassHeros::class
             ])
             ->add('description')
             ->add('level')

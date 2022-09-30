@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Index des héros</h1>
+    {% for hero in heroes %}
+
+        <h2 class="name">{{ hero.name }}</h2>
+        <div class="">Description du héros : {{ hero.description }}</div>
+        <div class="">Classe du héros : {{ hero.classHeros }}</div>
+        <div class="">Date d'anniversaire : {{ hero.birthDate | date('d/m/y') }}</div>
+        <div class="">Niveau : {{ hero.level }}</div>
+        <div class="">Expérience : {{ hero.experience }}</div>
+        <div class="">Point de vie : {{ hero.healtPoint }}</div>
+
+    {% endfor %}
+
+</div>
+{% endblock %}
