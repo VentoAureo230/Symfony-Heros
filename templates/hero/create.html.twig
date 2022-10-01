@@ -2,7 +2,7 @@
 
 {% form_theme formHero 'bootstrap_4_layout.html.twig' %}
 
-{% block title %}Creation d'un hero{% endblock %}
+{% block title %}Creation d'un heros{% endblock %}
 
 {% block body %}
     
@@ -17,6 +17,14 @@
         {{ form_start(formHero) }}
 
         {{ form_widget(formHero) }}
+
+        <button type="submit" class="btn btn-success">
+            {% if editMode %}
+                Enregistrer les modifications
+            {% else %}
+                Créer le héros
+            {% endif %}       
+        </button>
 
         {{ form_end(formHero) }}
     </div>

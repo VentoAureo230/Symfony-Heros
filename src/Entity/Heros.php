@@ -5,7 +5,7 @@ namespace App\Entity;
 use App\Repository\HerosRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Proxies\__CG__\App\Entity\ClassHeros;
+use App\Entity\ClassHeros;
 
 #[ORM\Entity(repositoryClass: HerosRepository::class)]
 class Heros
