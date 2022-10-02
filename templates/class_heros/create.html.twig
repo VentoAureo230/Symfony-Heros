@@ -1,8 +1,8 @@
 {% extends 'homepage.html.twig' %}
 
-{% form_theme formHero 'bootstrap_4_layout.html.twig' %}
+{% form_theme formClass 'bootstrap_4_layout.html.twig' %}
 
-{% block title %}Creation d'un heros{% endblock %}
+{% block title %}Creation d'une classe{% endblock %}
 
 {% block body %}
     
@@ -12,20 +12,20 @@
     </style>
 
     <div class="example-wrapper">
-        <h1 >Création d'un héros</h1>
+        <h1 >Création d'une classe</h1>
 
-        {{ form_start(formHero) }}
+        {{ form_start(formClass) }}
 
-        {{ form_widget(formHero) }}
+        {{ form_widget(formClass) }}
 
         <button type="submit" class="btn btn-success">
             {% if editMode %}
                 Enregistrer les modifications
             {% else %}
-                Créer le héros
+                Créer la classe
             {% endif %}       
         </button>
 
-        {{ form_end(formHero) }}
+        {{ form_end(formClass) }}
     </div>
 {% endblock %}

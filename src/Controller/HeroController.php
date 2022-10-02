@@ -9,7 +9,6 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Doctrine\Persistence\ManagerRegistry;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,7 +19,7 @@ class HeroController extends AbstractController
     #[Route('/', name: 'home')]
     public function index(): Response
     {
-        return $this->render('base.html.twig',);
+        return $this->render('homepage.html.twig',);
     }
 
     #[Route('/character', name: 'show_character')]
@@ -34,8 +33,8 @@ class HeroController extends AbstractController
 
     #[Route('/character/add', name:'add_character')]
     #[Route('/character/edit/{id}', name:'edit_character')]
-    public function form(Heros $hero = null, Request $request, ManagerRegistry $manager) {
-        
+    public function form(Heros $hero = null, Request $request, ManagerRegistry $manager)
+    {
         if(!$hero){
             $hero = new Heros();
         }
