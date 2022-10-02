@@ -42,8 +42,7 @@ class ClassHerosController extends AbstractController
             $em->flush();
 
             return $this->redirectToRoute('type_list', ['id' => $classHero->getId()]);
-    }
-
+        }
     return $this->render('class_heros/create.html.twig', ['formClass' => $form->createView(),
     'editMode' => $classHero->getId() !== null
     ]);

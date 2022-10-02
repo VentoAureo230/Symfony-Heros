@@ -1,0 +1,34 @@
+{% extends 'homepage.html.twig' %}
+
+{% block title %}Liste des compétences{% endblock %}
+
+{% block body %}
+    <div class="album py-5 bg-light"
+        <div class="container-fluid">
+            <div class="row">
+            {% for classSkill in classSkills %}        
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ classSkill.skillName }}</h5>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-items">{{ classSkill.description }}</li>
+                        </ul>
+                            <div class="card-body">
+                                <div class="btn-group">
+                                    <a href="{{ path('edit_class', {"id": classSkill.id}) }}" class="btn btn-sm btn-outline-secondary">Editer</a>
+                                    <a href="{{ path('delete_class', {"id": classSkill.id} ) }}" class="btn btn-sm btn-outline-secondary" onclick="return confirm('Confirmez la suppression')">Supprimer</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+

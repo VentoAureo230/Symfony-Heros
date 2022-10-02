@@ -45,6 +45,7 @@ class HeroController extends AbstractController
                 'date_label' => 'Starts on'
             ])
             ->add('classHeros')
+            // ->add('skillName')
             ->add('description')
             ->add('level')
             ->add('experience')
