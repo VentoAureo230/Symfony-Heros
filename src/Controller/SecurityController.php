@@ -27,7 +27,7 @@ class SecurityController extends AbstractController
     /**
      * Ce controlleur permet la déconnexion d'un compte du site
      */
-    #[Route('/deconnexion', 'security.logout')]
+    #[Route('/deconnexion', name:'security.logout')]
     public function logout()
     {
         // Nothing to do here
@@ -36,7 +36,7 @@ class SecurityController extends AbstractController
     /**
      * Ce controlleur permet l'enregistrement d'un nouvel utilisateur au site
      */
-    #[Route('/inscription', 'security.registration', methods: ['GET', 'POST'])]
+    #[Route('/inscription', name:'security.registration', methods: ['GET', 'POST'])]
     public function registration(Request $request, ManagerRegistry $manager): Response
     {
         $user = new User();
