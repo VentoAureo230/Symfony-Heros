@@ -63,7 +63,7 @@ Utilisez `symfony server:stop` pour arrêter le serveur
 
 ## Authors
 
-Moi ~~ sans l'aide de son prof en plus, vraiment trop fort ce mec...~~
+Moi ~~sans l'aide de son prof en plus, vraiment trop fort ce mec...~~
 
 ## To Do List
 
