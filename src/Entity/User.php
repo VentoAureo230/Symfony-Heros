@@ -51,11 +51,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column]
     #[NotNull()]
-    private ?\DateTimeImmutable $createdAt = null;
+    private ?\DateTimeImmutable $createdAt;
+
+    #[ORM\Column(type: 'datetime_immutable')] // Ajout de la colonne pour la modif de mdp
+    #[NotNull()]
+    private ?\DateTimeImmutable $updatedAt;
 
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
+        $this->updatedAt = new \DateTimeImmutable(); // Ajout de l'updated dans le constructeur 
         
     }
 
@@ -119,7 +124,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
+        // guarantee every user at least has ROLE_USER // Faire les roles admins
         $roles[] = 'ROLE_USER';
 
         return array_unique($roles);
@@ -194,6 +199,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setCreatedAt(\DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable // get et set pour la bdd
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }

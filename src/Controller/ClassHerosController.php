@@ -6,7 +6,7 @@ use App\Entity\ClassHeros;
 use App\Repository\ClassHerosRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\Persistence\ManagerRegistry;
-use LDAP\Result;
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -43,8 +43,9 @@ class ClassHerosController extends AbstractController
 
             return $this->redirectToRoute('type_list', ['id' => $classHero->getId()]);
         }
-    return $this->render('class_heros/create.html.twig', ['formClass' => $form->createView(),
-    'editMode' => $classHero->getId() !== null
+    return $this->render('class_heros/create.html.twig', [
+        'formClass' => $form->createView(),
+        'editMode' => $classHero->getId() !== null
     ]);
     }
 

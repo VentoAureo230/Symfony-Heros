@@ -31,14 +31,22 @@
             Compétences
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{{path('skill_list')}}">Liste des compétences</a></li>
+            <li><a class="dropdown-item" href="{{path('show_skills')}}">Liste des compétences</a></li>
             <li><a class="dropdown-item" href="{{path('add_skills')}}">Créer des compétences</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown"> 
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Compte
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{ path('home.user')}}">Votre profil</a></li>
+            <li><a class="dropdown-item" href="{{ path('security.logout') }}">Déconnexion</a></li>
           </ul>
         </li>
       </ul>
        <a class="navbar-text btn m-2" href="{{ path('security.login') }}">Connexion</a>
        <a class="navbar-text btn m-2" href="{{ path('security.registration') }}">Inscription</a>
-       <a class="navbar-text btn m-2" href="{{ path('security.logout') }}">Déconnexion</a>
     </div>
   </div>
 </nav>
