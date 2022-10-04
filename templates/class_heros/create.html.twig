@@ -2,30 +2,39 @@
 
 {% form_theme formClass 'bootstrap_4_layout.html.twig' %}
 
-{% block title %}Creation d'une classe{% endblock %}
+{% block title %}Creation d'une classe
+{% endblock %}
 
 {% block body %}
-    
-    <style>
-        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-    </style>
 
-    <div class="example-wrapper">
-        <h1 >Création d'une classe</h1>
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+	</style>
 
-        {{ form_start(formClass) }}
+	<div class="example-wrapper">
+		<h1>Création d'une classe</h1>
 
-        {{ form_widget(formClass) }}
+		{{ form_start(formClass) }}
 
-        <button type="submit" class="btn btn-success">
-            {% if editMode %}
-                Enregistrer les modifications
-            {% else %}
-                Créer la classe
-            {% endif %}       
-        </button>
+		{{ form_widget(formClass) }}
 
-        {{ form_end(formClass) }}
-    </div>
+		<button type="submit" class="btn btn-success">
+			{% if editMode %}
+				Enregistrer les modifications
+			{% else %}
+				Créer la classe
+			{% endif %}
+		</button>
+
+		{{ form_end(formClass) }}
+	</div>
 {% endblock %}

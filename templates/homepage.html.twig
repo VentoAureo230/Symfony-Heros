@@ -1,25 +1,34 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device.width, initial-scale=1">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-        <title>{% block title %}Héros Manager{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %} {{ encore_entry_link_tags('app') }} {% endblock %}
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device.width, initial-scale=1">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+		<title>
+			{% block title %}Héros Manager
+			{% endblock %}
+		</title>
+		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
 
-        {% block javascripts %} {{ encore_entry_script_tags('app') }} {% endblock %}
-    </head>
-    <body>
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+	</head>
+	<body>
 
-        {{include("base/nav.html.twig")}}
+		{{include("base/nav.html.twig")}}
 
-        {% block body %}
-        <h1> Bienvenue sur Héros Manager ! </h1>
+		{% block body %}
+			<h1>
+				Bienvenue sur Héros Manager !
+			</h1>
 
-        <p>Créez et gérez votre équipe de Héros, vous pouvez avoir jusqu'à 4 équipes de 4 Héros.</p>
-        <p>Chaqu'un de vos héros appartiennent à des classes qui ont des compétences spécifiques</p>
-        <p>Créez la team parfaite pour abattre vos enemis !</p>
-        {% endblock %}
-    </body>
+			<p>Créez et gérez votre équipe de Héros, vous pouvez avoir jusqu'à 4 équipes de 4 Héros.</p>
+			<p>Chaqu'un de vos héros appartiennent à des classes qui ont des compétences spécifiques</p>
+			<p>Créez la team parfaite pour abattre vos enemis !</p>
+		{% endblock %}
+	</body>
 </html>

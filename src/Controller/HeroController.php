@@ -16,6 +16,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HeroController extends AbstractController
 {
+    /**
+     * Homepage du site, rien de particulier
+     */
     #[Route('/', name: 'home')]
     public function index(): Response
     {
@@ -31,11 +34,14 @@ class HeroController extends AbstractController
         ]);
     }
 
-    #[Route('/character/add', name:'add_character')]
-    #[Route('/character/edit/{id}', name:'edit_character')]
+    /**
+     * Fonction d'ajout et d'édition de héros, le formulaire est fait main
+     */
+    #[Route('/character/add', name: 'add_character')]
+    #[Route('/character/edit/{id}', name: 'edit_character')]
     public function form(Heros $hero = null, Request $request, ManagerRegistry $manager)
     {
-        if(!$hero){
+        if (!$hero) {
             $hero = new Heros();
         }
 
@@ -53,20 +59,24 @@ class HeroController extends AbstractController
             ->getForm();
 
         $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $manager->getManager();
             $em->persist($hero);
             $em->flush();
 
             return $this->redirectToRoute('show_character', ['id' => $hero->getId()]);
         }
-        
-        return $this->render('hero/create.html.twig', ['formHero' => $form->createView(),
-        'editMode' => $hero->getId() !== null
-    ]); 
+
+        return $this->render('hero/create.html.twig', [
+            'formHero' => $form->createView(),
+            'editMode' => $hero->getId() !== null
+        ]);
     }
 
-    #[Route('/character/delete/{id}', name:'delete_character')]
+    /**
+     * Fonction de supression d'un héros
+     */
+    #[Route('/character/delete/{id}', name: 'delete_character')]
     public function delete(Heros $hero, ManagerRegistry $manager): RedirectResponse
     {
         $em = $manager->getManager();

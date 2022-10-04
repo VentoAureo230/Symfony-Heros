@@ -1,14 +1,15 @@
 {% extends "homepage.html.twig" %}
 {% block body %}
 
-<h1 class="p-4">Bienvenue {{ app.user.fullname }}</h1>
-    <div>Pseudo : {{ app.user.pseudo }}</div>
-    <div>Identifiant : {{ app.user.username }}</div>
-    <a href="{{ path('edit.user')}}" class="btn btn-primary">Modifier le profil</a>
-    <a href="{{ path('edit.password')}}" class="btn btn-primary">Modifier le mot de passe</a>
+	<h1 class="p-4">Bienvenue
+		{{ app.user.fullname }}</h1>
+	<div>Pseudo :
+		{{ app.user.pseudo }}</div>
+	<div>Identifiant :
+		{{ app.user.username }}</div>
+	<a href="{{ path('edit.user')}}" class="btn btn-primary">Modifier le profil</a>
+	<a href="{{ path('edit.password')}}" class="btn btn-primary">Modifier le mot de passe</a>
 </div>
 
 <h1 class="p-4">Vos Héros</h1>
-
-
 {% endblock %}

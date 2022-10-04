@@ -44,7 +44,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
 
     private ?string $plainPassword = null;
-    
+
     #[ORM\Column]
     #[ConstraintsNotBlank()]
     private ?string $password = 'password';
@@ -61,7 +61,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->createdAt = new \DateTimeImmutable();
         $this->updatedAt = new \DateTimeImmutable(); // Ajout de l'updated dans le constructeur 
-        
+
     }
 
     public function getId(): ?int

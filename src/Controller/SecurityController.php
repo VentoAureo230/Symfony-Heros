@@ -21,13 +21,13 @@ class SecurityController extends AbstractController
     {
         return $this->render('security/login.html.twig', [
             'last_username' => $authenticationUtils->getLastUsername(),
-            'error' =>$authenticationUtils->getLastAuthenticationError()
+            'error' => $authenticationUtils->getLastAuthenticationError()
         ]);
     }
     /**
      * Ce controlleur permet la déconnexion d'un compte du site
      */
-    #[Route('/deconnexion', name:'security.logout')]
+    #[Route('/deconnexion', name: 'security.logout')]
     public function logout()
     {
         // Nothing to do here
@@ -36,7 +36,7 @@ class SecurityController extends AbstractController
     /**
      * Ce controlleur permet l'enregistrement d'un nouvel utilisateur au site
      */
-    #[Route('/inscription', name:'security.registration', methods: ['GET', 'POST'])]
+    #[Route('/inscription', name: 'security.registration', methods: ['GET', 'POST'])]
     public function registration(Request $request, ManagerRegistry $manager): Response
     {
         $user = new User();
@@ -45,7 +45,7 @@ class SecurityController extends AbstractController
         $form = $this->createForm(RegistrationType::class, $user); //Form fait avec make:form
 
         $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             $user = $form->getData();
 
             $this->addFlash(

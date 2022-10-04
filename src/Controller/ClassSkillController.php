@@ -14,44 +14,54 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ClassSkillController extends AbstractController
 {
+    /**
+     * Affiche l'ensemble des skills de toute les classes
+     */
     #[Route('/skills', name: 'show_skills')]
     public function showSkills(ClassSkillsRepository $repository): Response
     {
         $classSkill = $repository->findAll();
         return $this->render('class_skill/index.html.twig', [
-        'classSkills' => $classSkill,
+            'classSkills' => $classSkill,
         ]);
     }
 
-    #[Route('skills/add', name:'add_skills')]
-    #[Route('skills/edit/{id}', name:'edit_skills')]
+    /**
+     * Fonction d'ajout et de modifcation des skills
+     */
+    #[Route('skills/add', name: 'add_skills')]
+    #[Route('skills/edit/{id}', name: 'edit_skills')]
     public function form(ClassSkills $classSkill = null, Request $request, ManagerRegistry $manager)
     {
-        if(!$classSkill){
+        if (!$classSkill) {
             $classSkill = new ClassSkills();
         }
 
         $form = $this->createFormBuilder($classSkill)
-                    ->add('skillName')
-                    ->add('description')
-                    ->add('classHeros')
-                    ->getForm();
-        
+            ->add('skillName')
+            ->add('description')
+            ->add('classHeros')
+            ->getForm();
+
         $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $manager->getManager();
             $em->persist($classSkill);
             $em->flush();
 
             return $this->redirectToRoute('show_skills', ['id' => $classSkill->getId()]);
         }
-    
-    return $this->render('class_skill/create.html.twig', ['formSkill' => $form->createView(),
-    'editMode' => $classSkill->getId() !== null
-    ]);
+
+        return $this->render('class_skill/create.html.twig', [
+            'formSkill' => $form->createView(),
+            'editMode' => $classSkill->getId() !== null
+        ]);
     }
 
-    #[Route('/skills/delete/{id}', name:'delete_skills')]
+    /**
+     * Fonction de supression des skills
+     */
+    #[Route('/skills/delete/{id}', name: 'delete_skills')]
     public function deleteSkills(ClassSkills $skill, ManagerRegistry $manager): RedirectResponse
     {
         $em = $manager->getManager();

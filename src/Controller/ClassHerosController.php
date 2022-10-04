@@ -13,6 +13,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ClassHerosController extends AbstractController
 {
+    /**
+     * Affiche tout les héros dans la BDD - Todo : Affichez les héros appartenant au compte utilisateur (et donc créer des équipes de héros)
+     */
     #[Route('/type', name: 'type_list')]
     public function showClass(ClassHerosRepository $repository): Response
     {
@@ -22,11 +25,14 @@ class ClassHerosController extends AbstractController
         ]);
     }
 
-    #[Route('/type/add', name:'add_class')]
-    #[Route('/type/edit/{id}', name:'edit_class')]
+    /**
+     * Fonction d'ajout et de modification des héros existant
+     */
+    #[Route('/type/add', name: 'add_class')]
+    #[Route('/type/edit/{id}', name: 'edit_class')]
     public function form(ClassHeros $classHero = null, Request $request, ManagerRegistry $manager)
     {
-        if(!$classHero){
+        if (!$classHero) {
             $classHero = new ClassHeros();
         }
 
@@ -36,20 +42,23 @@ class ClassHerosController extends AbstractController
             ->getForm();
 
         $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $manager->getManager();
             $em->persist($classHero);
             $em->flush();
 
             return $this->redirectToRoute('type_list', ['id' => $classHero->getId()]);
         }
-    return $this->render('class_heros/create.html.twig', [
-        'formClass' => $form->createView(),
-        'editMode' => $classHero->getId() !== null
-    ]);
+        return $this->render('class_heros/create.html.twig', [
+            'formClass' => $form->createView(),
+            'editMode' => $classHero->getId() !== null
+        ]);
     }
 
-    #[Route('type/delete/{id}', name:'delete_class')]
+    /**
+     * Fonction de supression des héros
+     */
+    #[Route('type/delete/{id}', name: 'delete_class')]
     public function deleteClass(ClassHeros $classHero, ManagerRegistry $manager): Response
     {
         $em = $manager->getManager();

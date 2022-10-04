@@ -26,7 +26,7 @@ class UserListener
 
     public function encodePassword(User $user) // hash le password en BDD
     {
-        if($user->getPlainPassword() === null) {
+        if ($user->getPlainPassword() === null) {
             return;
         }
 
@@ -34,8 +34,8 @@ class UserListener
             $this->hasher->hashPassword(
                 $user,
                 $user->getPlainPassword()
-                )
-            );
+            )
+        );
         $user->setPlainPassword(null); // Evite les fuites de données
     }
 }
