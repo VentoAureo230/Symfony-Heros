@@ -72,6 +72,7 @@ Moi ~~sans l'aide de son prof en plus, vraiment trop fort ce mec...~~
 - Débuger les boutons de modifications de mot de passe et info de l'utilisateur
 - Améliorer la personnalisation des héros (armes, armures, etc...)
 - Permettre l'ajout d'image pour un héros (ou permettre le choix parmis une liste d'avatar disponible)
+- Améliorer le champs de date du formulaire de création de héro
 - Améliorer le design du site
 
 ### Notes
