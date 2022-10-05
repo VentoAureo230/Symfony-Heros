@@ -66,7 +66,7 @@ class UserController extends AbstractController
      * Fonction de modification du mot de passe de l'utilisateur
      */
     #[Route('/user/edit_password', name: 'edit.password', methods: ['GET', 'POST'])]
-    public function editPassword(Request $request, ManagerRegistry $manager, UserPasswordHasherInterface $hasher): Response
+    public function editPassword(User $user, Request $request, ManagerRegistry $manager, UserPasswordHasherInterface $hasher): Response
     {
         if (!$this->getUser()) {
             return $this->redirectToRoute('security.login'); // Si le User n'est pas co il est redirigé au login
