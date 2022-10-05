@@ -24,7 +24,7 @@ Ces instructions vous permettrons de faire tourner le projet sur votre machine e
 
 ## Before We Get Started
 
-Composer est obligatoire pour pouvoir gérer les dépendances dans Symfony en PhP. Il s'occupe des installation et mise à jour. [Composer Install](https://getcomposer.org/).
+Composer est obligatoire pour pouvoir gérer les dépendances dans Symfony en PhP. Il s'occupe des installations et mises à jour. [Composer Install](https://getcomposer.org/).
 
 Pour obtenir une copie de ce projet, ouvrez votre terminal et entrer :
 
@@ -42,7 +42,7 @@ Pour exécuter le projet ouvrez votre terminal dans le dossier du projet.
 2. Créez la base de donnée :
 
 ```
-php bin/console make:database:create
+php bin/console doctrine:database:create
 ```
 
 3. Exécuter les migrations précédentes (optionnel) :
