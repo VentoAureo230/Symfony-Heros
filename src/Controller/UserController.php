@@ -27,22 +27,17 @@ class UserController extends AbstractController
      * Fonction de modification des informations de l'utilisateur
      */
     #[Route('/user/edit_profile', name: 'edit.user')]
-    public function edit(User $user, Request $request, ManagerRegistry $manager, UserPasswordHasherInterface $hasher): Response
+    public function edit(Request $request, ManagerRegistry $manager, UserPasswordHasherInterface $hasher): Response
     {
         if (!$this->getUser()) {
             return $this->redirectToRoute('security.login'); // Si le User n'est pas co il est redirigé au login
         }
 
-        if ($this->getUser() !== $user) {
-            return $this->redirectToRoute('home'); // Si le user est co, il ne peut pas modif un compte en changeant l'id dans l'url (pour éviter les 'hack')
-        }
-
-
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(UserType::class, $this->getUser());
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($hasher->isPasswordValid($user, $form->getData()->getPlainPassword())) {
+            if ($hasher->isPasswordValid($form->getData()->getPlainPassword())) {
                 $user = $form->getData();
                 $em = $manager->getManager();
                 $em->persist($user);
@@ -57,7 +52,7 @@ class UserController extends AbstractController
             } else {
                 $this->addFlash(
                     'warning',
-                    'Lee mot de passe renseigné est incorrect.'
+                    'Le mot de passe renseigné est incorrect.'
                 );
             }
         }
@@ -70,24 +65,21 @@ class UserController extends AbstractController
     /**
      * Fonction de modification du mot de passe de l'utilisateur
      */
-    #[Route('user/edit_password', name: 'edit.password', methods: ['GET', 'POST'])]
-    public function editPassword(User $user, Request $request, ManagerRegistry $manager, UserPasswordHasherInterface $hasher): Response
+    #[Route('/user/edit_password', name: 'edit.password', methods: ['GET', 'POST'])]
+    public function editPassword(Request $request, ManagerRegistry $manager, UserPasswordHasherInterface $hasher): Response
     {
         if (!$this->getUser()) {
             return $this->redirectToRoute('security.login'); // Si le User n'est pas co il est redirigé au login
         }
 
-        if ($this->getUser() !== $user) {
-            return $this->redirectToRoute('home'); // Si le user est co, il ne peut pas modif un compte en changeant l'id dans l'url (pour éviter les 'hack')
-        }
-
-        $form = $this->createForm(UserPasswordType::class);
+  
+        $form = $this->createForm(UserPasswordType::class, $this->getUser());
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($hasher->isPasswordValid($user, $form->getData()['plainPassword'])) {
+            if ($hasher->isPasswordValid($user = $form->getData()['plainPassword'])) {
                 $user->setUpdatedAt(new \DateTimeImmutable()); // on modifie un mdp qui à été créer à une date précise donc il faut lui donner une date d'update pour que la modification est lieu
-                $user->setPlainPassword($form->getData()['newPassword']);
+                $user->setPlainPassword($form->getData()['plainPassword']);
 
 
                 $em = $manager->getManager();

@@ -6,7 +6,7 @@ use App\Entity\ClassHeros;
 use App\Repository\ClassHerosRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\Persistence\ManagerRegistry;
-
+use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,8 +17,9 @@ class ClassHerosController extends AbstractController
      * Affiche tout les héros dans la BDD - Todo : Affichez les héros appartenant au compte utilisateur (et donc créer des équipes de héros)
      */
     #[Route('/type', name: 'type_list')]
-    public function showClass(ClassHerosRepository $repository): Response
+    public function showClass(ClassHerosRepository $repository, LoggerInterface $logger): Response
     {
+        $logger->debug('Accession sur la route /type');
         $classHeros = $repository->findAll();
         return $this->render('class_heros/index.html.twig', [
             'classHeros' => $classHeros,
